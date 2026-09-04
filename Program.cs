@@ -2,22 +2,50 @@
 
 class Account
 {
-    public int Account_Number { get; set; }
-    public string Account_Name { get; set; }
-    public double Account_Balance { get; set; }
+    public int AccountNumber { get; set; }
+    public string AccountName { get; set; }
+    public double AccountBalance { get; set; }
+    
+    //contructor
+    public Account(int accountnumber, string accountname, double accountbalance)
+    {
+        AccountNumber = accountnumber;
+        AccountName = accountname;
+        AccountBalance = accountbalance;
+    }
 }
 
 class Program 
 {
+    static Account Input_User() 
+    {
+        Console.WriteLine("Enter your Account Number");
+        int accountnumber = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Enter your Account Name");
+        string accountname = Console.ReadLine();
+
+        Console.WriteLine("Enter your Account Balance");
+        double accountbalance = Convert.ToDouble(Console.ReadLine());
+
+        Account account = new Account(accountnumber, accountname, accountbalance); // object create 
+        
+        //return object
+        return account;
+    }
 static void Main(string[] args)
 {
-        Account account = new Account();
-        account.Account_Number = 19209;
-        account.Account_Name = "Adan";
-        account.Account_Balance = 10000;
+        //Account account = new Account(19209, "Adan", 10000);
 
-        Console.WriteLine(account.Account_Name);
-        Console.WriteLine(account.Account_Balance);
-        Console.WriteLine(account.Account_Number);
+        //if we are using constructor we didnot need to do this ↓ 
+        //account.AccountNumber = 19209;
+        //account.AccountName = "Adan";
+        //account.AccountBalance = 10000;
+
+        Account account = Input_User();
+
+        Console.WriteLine(account.AccountName);
+        Console.WriteLine(account.AccountBalance);
+        Console.WriteLine(account.AccountNumber);
 }
 }
