@@ -24,8 +24,7 @@ class Account
     {
         if (AccountBalance >= Wamount)
         {
-            Console.WriteLine("You can Withdraw the money");
-            AccountBalance = AccountBalance - Wamount;
+            AccountBalance -= Wamount;
         }
         else
         {
@@ -64,10 +63,24 @@ class Program
 
             return account;
         }
-
-    static Account FinAccount(List<Account> accounts, int accountnumber)
+class Bank
     {
-        return;
+        List<Account> accounts = new List<Account>();
+        public void Addaccount(Account account)
+        {
+            account.add(account);
+        }
+    }
+    static Account FindAccount(List<Account> accounts, int accountnumber)
+    {
+        foreach (Account account in accounts) 
+        {
+            if(account.AccountNumber == accountnumber)
+            {
+                return account;
+            }
+        }
+        return null;
     }
         static void Main(string[] args)
         {
@@ -86,9 +99,8 @@ class Program
             //Account account2 = Input_User();
             //Account account3 = Input_User();
 
+            Bank bank = new Bank();
 
-
-            List<Account> accounts = new List<Account>();
 
             //we are using for loop 
             for (int i = 0; i < 3; i++)
@@ -100,16 +112,31 @@ class Program
                 Console.WriteLine($"Current Balance: {balance}");
             }
 
-            //call the input user 
-            //accounts.Add(account1);
-            //accounts.Add(account2);
-            //accounts.Add(account3);
+        //call the input user 
+        //accounts.Add(account1);
+        //accounts.Add(account2);
+        //accounts.Add(account3);
 
-            foreach (Account acc in accounts)
-            {
-                Console.WriteLine($"Account Number: {acc.AccountNumber}");
-                Console.WriteLine($"Account Name: {acc.AccountName}");
-                Console.WriteLine($"Account balance {acc.AccountBalance}");
-            }
+        Console.WriteLine("Enter the Account Number to Search");
+        int SearchNum =Convert.ToInt32(Console.ReadLine());
+        Account foundaccount = FindAccount(accounts, SearchNum);
+
+        if (foundaccount != null) 
+        {
+            Console.WriteLine($"Account Number: {foundaccount.AccountNumber}");
+            Console.WriteLine($"Account Name: {foundaccount.AccountName}");
+            Console.WriteLine($"Account balance {foundaccount.AccountBalance}");
         }
+        else
+        {
+            Console.WriteLine("Invalid Account Number");
+        }
+
+        //foreach (Account acc in accounts)
+        //{
+        //    Console.WriteLine($"Account Number: {acc.AccountNumber}");
+        //    Console.WriteLine($"Account Name: {acc.AccountName}");
+        //    Console.WriteLine($"Account balance {acc.AccountBalance}");
+        //}
+    }
 }
