@@ -8,7 +8,7 @@ class Account
     public string AccountName { get; set; }
     public double AccountBalance { get; set; }
 
-    //contructor
+    // Constructor
     public Account(int accountnumber, string accountname, double accountbalance)
     {
         AccountNumber = accountnumber;
@@ -16,10 +16,13 @@ class Account
         AccountBalance = accountbalance;
     }
 
-    public void Deposit(Double Damount)
+    // Deposit money
+    public void Deposit(double Damount)
     {
         AccountBalance = AccountBalance + Damount;
     }
+
+    // Withdraw money
     public void Withdraw(double Wamount)
     {
         if (AccountBalance >= Wamount)
@@ -31,112 +34,213 @@ class Account
             Console.WriteLine("Invalid Amount");
         }
     }
+
+    // Check balance
     public double CheckBalance()
     {
         return AccountBalance;
     }
 }
+
 class Program
 {
-        static Account Input_User()
-        {
-            Console.WriteLine("Enter your Account Number");
-            int accountnumber = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Enter your Account Name");
-            string accountname = Console.ReadLine();
-
-            Console.WriteLine("Enter your Account Balance");
-            double accountbalance = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine($"Enter the deposit Amount");
-            double depositamount = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine($"Enter the with Draw Amount");
-            double withdrawamount = Convert.ToDouble(Console.ReadLine());
-
-            Account account = new Account(accountnumber, accountname, accountbalance); // object create 
-
-            account.Deposit(depositamount);
-
-            account.Withdraw(withdrawamount);
-
-            return account;
-        }
-class Bank
+    // Take account information from user
+    static Account Input_User()
     {
+        Console.WriteLine("Enter your Account Number");
+        int accountnumber = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Enter your Account Name");
+        string accountname = Console.ReadLine();
+
+        Console.WriteLine("Enter your Account Balance");
+        double accountbalance = Convert.ToDouble(Console.ReadLine());
+
+        //Console.WriteLine("Enter the deposit Amount");
+        //double depositamount = Convert.ToDouble(Console.ReadLine());
+
+        //Console.WriteLine("Enter the withdraw Amount");
+        //double withdrawamount = Convert.ToDouble(Console.ReadLine());
+
+        // Create Account object
+        Account account = new Account(
+            accountnumber,
+            accountname,
+            accountbalance
+        );
+
+        //// Deposit
+        //account.Deposit(depositamount);
+
+        //// Withdraw
+        //account.Withdraw(withdrawamount);
+
+        return account;
+    }
+
+    class Bank
+    {
+        // Bank owns the list of accounts
         List<Account> accounts = new List<Account>();
+
+        // Add account to the bank
         public void Addaccount(Account account)
         {
-            account.add(account);
+            accounts.Add(account);
+        }
+
+        // Find account by account number
+        public Account? FindAccount(int accountnumber)
+        {
+            foreach (Account account in accounts)
+            {
+                if (account.AccountNumber == accountnumber)
+                {
+                    return account;
+                }
+            }
+
+            return null;
         }
     }
-    static Account FindAccount(List<Account> accounts, int accountnumber)
+
+    static void Main(string[] args)
     {
-        foreach (Account account in accounts) 
+        Bank bank = new Bank();
+
+        while (true) 
         {
-            if(account.AccountNumber == accountnumber)
+            Console.WriteLine();
+            Console.WriteLine("===== Bank Management System =====");
+            Console.WriteLine("1. Create Account");
+            Console.WriteLine("2. Deposit");
+            Console.WriteLine("3. Withdraw");
+            Console.WriteLine("4. Check Balance");
+            Console.WriteLine("5. Account Details");
+            Console.WriteLine("6. Exit");
+
+            Console.Write("Enter your choice: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
             {
-                return account;
+                case 1:
+                    Console.WriteLine("Create Account selected");
+                    Account account = Input_User();
+                    bank.Addaccount(account);
+                    Console.WriteLine("Account Create Successfully");
+                    break;
+
+                case 2:
+                    Console.WriteLine("Deposit selected");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Enter your Account Number");
+                    int accountnumber = Convert.ToInt32(Console.ReadLine());
+
+                    Account? foundAccount = bank.FindAccount(accountnumber);
+                    Console.WriteLine(foundAccount.AccountName);
+
+                    if(foundAccount != null)
+                    {
+                        Console.WriteLine("Enter your Deposit");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+
+                        foundAccount.Deposit(amount);
+                        Console.WriteLine("Deposit Successful");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Account Number");
+                    }
+
+                        break;
+
+                case 3:
+                    Console.WriteLine("Withdraw selected");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Enter your Account Number");
+                    accountnumber = Convert.ToInt32(Console.ReadLine());
+
+                    foundAccount = bank.FindAccount(accountnumber);
+                    Console.WriteLine(foundAccount.AccountName);
+
+                    if (foundAccount != null)
+                    {
+                        Console.WriteLine("Enter your WithDraw Amount");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+
+                        foundAccount.Withdraw(amount);
+                        Console.WriteLine("WithDraw Successful");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Account Number");
+                    }
+
+                    break;
+
+                case 4:
+                    Console.WriteLine("Check Balance selected");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Enter your Account Number");
+                    accountnumber = Convert.ToInt32(Console.ReadLine());
+
+                    foundAccount = bank.FindAccount(accountnumber);
+                    Console.WriteLine(foundAccount.AccountName);
+
+                    Console.WriteLine(foundAccount.CheckBalance());
+
+                    break;
+
+                case 5:
+                    Console.WriteLine("Account Details selected");
+                    Console.WriteLine();
+                    break;
+
+                case 6:
+                    Console.WriteLine("Thank you for using Bank Management System.");
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid choice");
+                    break;
             }
         }
-        return null;
-    }
-        static void Main(string[] args)
-        {
-            //constuctor argument
-            //Account account1 = new Account(19209, "Adan", 10000);
-            //Account account2 = new Account(20212, "Taha", 35000);
-            //Account account3 = new Account(20033, "Azzam", 4000.22);
 
-            //if we are using constructor we didnot need to do this ↓ 
-            //account.AccountNumber = 19209;
-            //account.AccountName = "Adan";
-            //account.AccountBalance = 10000;
-
-            //static Account Input_User() call this method below
-            //Account account1 = Input_User();
-            //Account account2 = Input_User();
-            //Account account3 = Input_User();
-
-            Bank bank = new Bank();
-
-
-            //we are using for loop 
-            for (int i = 0; i < 3; i++)
-            {
-                Account account = Input_User();
-                accounts.Add(account);
-
-                double balance = account.CheckBalance();
-                Console.WriteLine($"Current Balance: {balance}");
-            }
-
-        //call the input user 
-        //accounts.Add(account1);
-        //accounts.Add(account2);
-        //accounts.Add(account3);
-
-        Console.WriteLine("Enter the Account Number to Search");
-        int SearchNum =Convert.ToInt32(Console.ReadLine());
-        Account foundaccount = FindAccount(accounts, SearchNum);
-
-        if (foundaccount != null) 
-        {
-            Console.WriteLine($"Account Number: {foundaccount.AccountNumber}");
-            Console.WriteLine($"Account Name: {foundaccount.AccountName}");
-            Console.WriteLine($"Account balance {foundaccount.AccountBalance}");
-        }
-        else
-        {
-            Console.WriteLine("Invalid Account Number");
-        }
-
-        //foreach (Account acc in accounts)
+        // Create 3 accounts
+        //for (int i = 0; i < 3; i++)
         //{
-        //    Console.WriteLine($"Account Number: {acc.AccountNumber}");
-        //    Console.WriteLine($"Account Name: {acc.AccountName}");
-        //    Console.WriteLine($"Account balance {acc.AccountBalance}");
+        //    Account account = Input_User();
+
+        //    // Add account to Bank
+        //    bank.Addaccount(account);
+
+        //    // Check current balance
+        //    double balance = account.CheckBalance();
+
+        //    Console.WriteLine($"Current Balance: {balance}");
+        //    Console.WriteLine();
         //}
-    }
+
+        // Search account
+        //Console.WriteLine("Enter the Account Number to Search");
+        //int SearchNum = Convert.ToInt32(Console.ReadLine());
+
+        //Account foundaccount = bank.FindAccount(SearchNum);
+
+        //// Display account information
+        //if (foundaccount != null)
+        //{
+        //    Console.WriteLine($"Account Number: {foundaccount.AccountNumber}");
+        //    Console.WriteLine($"Account Name: {foundaccount.AccountName}");
+        //    Console.WriteLine($"Account Balance: {foundaccount.AccountBalance}");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Invalid Account Number");
+        //}
+    }  
+    
 }
