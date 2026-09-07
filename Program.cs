@@ -138,10 +138,10 @@ class Program
                     int accountnumber = Convert.ToInt32(Console.ReadLine());
 
                     Account? foundAccount = bank.FindAccount(accountnumber);
-                    Console.WriteLine(foundAccount.AccountName);
 
                     if(foundAccount != null)
                     {
+                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
                         Console.WriteLine("Enter your Deposit");
                         double amount = Convert.ToDouble(Console.ReadLine());
 
@@ -163,10 +163,10 @@ class Program
                     accountnumber = Convert.ToInt32(Console.ReadLine());
 
                     foundAccount = bank.FindAccount(accountnumber);
-                    Console.WriteLine(foundAccount.AccountName);
 
                     if (foundAccount != null)
                     {
+                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
                         Console.WriteLine("Enter your WithDraw Amount");
                         double amount = Convert.ToDouble(Console.ReadLine());
 
@@ -188,9 +188,17 @@ class Program
                     accountnumber = Convert.ToInt32(Console.ReadLine());
 
                     foundAccount = bank.FindAccount(accountnumber);
-                    Console.WriteLine(foundAccount.AccountName);
 
-                    Console.WriteLine(foundAccount.CheckBalance());
+                    if(foundAccount != null) 
+                    {
+                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
+                        Console.WriteLine($"Current Balance: {foundAccount.CheckBalance()}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Account Number");
+
+                    }
 
                     break;
 
