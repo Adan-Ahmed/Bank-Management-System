@@ -17,29 +17,31 @@ class Account
     }
 
     // Deposit money
-    public void Deposit(double Damount)
+    public bool Deposit(double Damount)
     {
         if (Damount > 0)
         {
             
-            AccountBalance = AccountBalance + Damount;  
+            AccountBalance = AccountBalance + Damount;
+            return true;
         }
         else
         {
-            Console.WriteLine("Deposite Amount Must Be Greater Then 0");
+            return false;
         }
     }
 
     // Withdraw money
-    public void Withdraw(double Wamount)
+    public bool Withdraw(double Wamount)
     {
         if (AccountBalance >= Wamount && Wamount > 0)
         {
             AccountBalance -= Wamount;
+            return true;
         }
         else
         {
-            Console.WriteLine("Invalid Amount");
+            return false;
         }
     }
 
@@ -145,7 +147,7 @@ class Program
                     Account account = Input_User();
                     Account existingaccount = bank.FindAccount(account.AccountNumber);
 
-                    if (existingaccount != null)
+                    if (existingaccount == null)
                     {
                         bank.Addaccount(account);
                         Console.WriteLine("Account Create Successfully");                    
@@ -171,8 +173,15 @@ class Program
                         Console.WriteLine("Enter your Deposit");
                         double amount = Convert.ToDouble(Console.ReadLine());
 
-                        foundAccount.Deposit(amount);
-                        Console.WriteLine("Deposit Successful");
+                        bool success = foundAccount.Deposit(amount);
+                        if (success)
+                        {
+                            Console.WriteLine("Deposit Successful")
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Deposit");
+                        }
                     }
                     else
                     {
@@ -196,8 +205,15 @@ class Program
                         Console.WriteLine("Enter your WithDraw Amount");
                         double amount = Convert.ToDouble(Console.ReadLine());
 
-                        foundAccount.Withdraw(amount);
-                        Console.WriteLine("WithDraw Successful");
+                        bool success = foundAccount.Withdraw(amount);
+                        if (success)
+                        {
+                            Console.WriteLine("WithDraw Successful");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Withdraw Amount");
+                        }
                     }
                     else
                     {
