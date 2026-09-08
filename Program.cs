@@ -57,8 +57,16 @@ class Program
     // Take account information from user
     static Account Input_User()
     {
-        Console.WriteLine("Enter your Account Number");
-        int accountnumber = Convert.ToInt32(Console.ReadLine());
+        int accountnumber;
+        while (true) 
+        {
+            Console.WriteLine("Enter your Account Number");
+            if (int.TryParse(Console.ReadLine(), out accountnumber)) 
+            {
+                break;
+            }
+            Console.WriteLine("Please enter a valid number");
+        }
 
         Console.WriteLine("Enter your Account Name");
         string accountname = Console.ReadLine();
@@ -176,7 +184,7 @@ class Program
                         bool success = foundAccount.Deposit(amount);
                         if (success)
                         {
-                            Console.WriteLine("Deposit Successful")
+                            Console.WriteLine("Deposit Successful");
                         }
                         else
                         {
