@@ -19,13 +19,21 @@ class Account
     // Deposit money
     public void Deposit(double Damount)
     {
-        AccountBalance = AccountBalance + Damount;
+        if (Damount > 0)
+        {
+            
+            AccountBalance = AccountBalance + Damount;  
+        }
+        else
+        {
+            Console.WriteLine("Deposite Amount Must Be Greater Then 0");
+        }
     }
 
     // Withdraw money
     public void Withdraw(double Wamount)
     {
-        if (AccountBalance >= Wamount)
+        if (AccountBalance >= Wamount && Wamount > 0)
         {
             AccountBalance -= Wamount;
         }
@@ -53,8 +61,17 @@ class Program
         Console.WriteLine("Enter your Account Name");
         string accountname = Console.ReadLine();
 
-        Console.WriteLine("Enter your Account Balance");
-        double accountbalance = Convert.ToDouble(Console.ReadLine());
+        double accountbalance;
+        while (true) 
+        {
+            Console.WriteLine("Enter your Account Balance");
+            accountbalance = Convert.ToDouble(Console.ReadLine());
+            if(accountbalance >= 0)
+            {
+                break;
+            }
+                Console.WriteLine("Initial Balance Cannot Be Negative");
+        }
 
         //Console.WriteLine("Enter the deposit Amount");
         //double depositamount = Convert.ToDouble(Console.ReadLine());
@@ -90,7 +107,7 @@ class Program
         }
 
         // Find account by account number
-        public Account? FindAccount(int accountnumber)
+        public Account FindAccount(int accountnumber)
         {
             foreach (Account account in accounts)
             {
@@ -126,9 +143,18 @@ class Program
                 case 1:
                     Console.WriteLine("Create Account selected");
                     Account account = Input_User();
-                    bank.Addaccount(account);
-                    Console.WriteLine("Account Create Successfully");
-                    break;
+                    Account existingaccount = bank.FindAccount(account.AccountNumber);
+
+                    if (existingaccount != null)
+                    {
+                        bank.Addaccount(account);
+                        Console.WriteLine("Account Create Successfully");                    
+                    }
+                    else
+                    {
+                        Console.WriteLine("Account ALready Exits");
+                    }
+                        break;
 
                 case 2:
                     Console.WriteLine("Deposit selected");
@@ -137,7 +163,7 @@ class Program
                     Console.WriteLine("Enter your Account Number");
                     int accountnumber = Convert.ToInt32(Console.ReadLine());
 
-                    Account? foundAccount = bank.FindAccount(accountnumber);
+                    Account foundAccount = bank.FindAccount(accountnumber);
 
                     if(foundAccount != null)
                     {
@@ -205,6 +231,22 @@ class Program
                 case 5:
                     Console.WriteLine("Account Details selected");
                     Console.WriteLine();
+
+                    Console.WriteLine("Enter your Account Number");
+                    accountnumber = Convert.ToInt32(Console.ReadLine());
+                    foundAccount = bank.FindAccount(accountnumber);
+
+                    if (foundAccount != null)
+                    {
+                        Console.WriteLine($"Account Number: {foundAccount.AccountNumber}");
+                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
+                        Console.WriteLine($"Account Balance: {foundAccount.AccountBalance}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Account Number");
+                    }
+
                     break;
 
                 case 6:
