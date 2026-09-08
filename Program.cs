@@ -65,7 +65,7 @@ class Program
             {
                 break;
             }
-            Console.WriteLine("Please enter a valid number");
+            Console.WriteLine("Please enter a valid Account Number");
         }
 
         Console.WriteLine("Enter your Account Name");
@@ -75,12 +75,16 @@ class Program
         while (true) 
         {
             Console.WriteLine("Enter your Account Balance");
-            accountbalance = Convert.ToDouble(Console.ReadLine());
-            if(accountbalance >= 0)
+            if(double.TryParse(Console.ReadLine(), out accountbalance)) 
             {
+                if(accountbalance >= 0)
+                {
+                    break;
+                }
+                    Console.WriteLine("Initial Balance Cannot Be Negative");
                 break;
             }
-                Console.WriteLine("Initial Balance Cannot Be Negative");
+            Console.WriteLine("Please enter a valid number for balance");
         }
 
         //Console.WriteLine("Enter the deposit Amount");
