@@ -310,6 +310,18 @@ class Program
                         Console.WriteLine("Invalid Account Number");
 
                     }
+                    Console.WriteLine("Enter Receiver Account Number");
+
+                    int receiver;
+                    while (true) 
+                    {
+                       if(int.TryParse(Console.ReadLine(), out receiver)) 
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please Enter valid receiver account number");
+                    }
+
 
                     break;
 
