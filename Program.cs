@@ -217,8 +217,17 @@ class Program
                     if(foundAccount != null)
                     {
                         Console.WriteLine($"Account Name: {foundAccount.AccountName}");
-                        Console.WriteLine("Enter your Deposit");
-                        double amount = Convert.ToDouble(Console.ReadLine());
+
+                        double amount;
+                        while (true) 
+                        {
+                            Console.WriteLine("Enter your Deposit");
+                            if (double.TryParse(Console.ReadLine(), out amount)) 
+                            {
+                                break;
+                            }
+                            Console.WriteLine("Please enter correct deposit number");
+                        }
 
                         bool success = foundAccount.Deposit(amount);
                         if (success)
@@ -337,6 +346,7 @@ class Program
                         Console.WriteLine("Invalid Account Number");
                         break;
                     }
+
                     Console.WriteLine("Enter the receiver account number");
                     Console.WriteLine();
 
@@ -358,6 +368,18 @@ class Program
                     {
                         Console.WriteLine("Invalid Account Number");
                         break;
+                    }
+
+                    Console.WriteLine("Enter the amount you want to send");
+                    Console.WriteLine();
+                    double Tamount;
+                    while (true)
+                    {
+                        if(double.TryParse(Console.ReadLine(),out Tamount)) 
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Enter the correct amount number");
                     }
 
                     break;
