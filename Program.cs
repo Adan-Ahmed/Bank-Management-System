@@ -381,8 +381,18 @@ class Program
                         }
                         Console.WriteLine("Enter the correct amount number");
                     }
+                    bool success = foundAccount.Transfer(amount);
+                    if (success) 
+                    {
+                        
+                    }
+                    else
+                    {
 
-                    break;
+                    }
+
+
+                        break;
 
                 case 6:
                     Console.WriteLine("Account Details selected");
