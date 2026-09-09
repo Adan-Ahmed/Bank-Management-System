@@ -45,11 +45,27 @@ class Account
         }
     }
 
+    public bool Transfer(Account receiver, double amount) 
+    { 
+        if(amount > 0 && AccountBalance >= amount) 
+        {
+            AccountBalance -= amount;
+            receiver.AccountBalance += amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     // Check balance
     public double CheckBalance()
     {
         return AccountBalance;
     }
+
+
 }
 
 class Program
@@ -150,8 +166,9 @@ class Program
             Console.WriteLine("2. Deposit");
             Console.WriteLine("3. Withdraw");
             Console.WriteLine("4. Check Balance");
-            Console.WriteLine("5. Account Details");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("5. Transfer Money");
+            Console.WriteLine("6. Account Details");
+            Console.WriteLine("7. Exit");
 
             int choice;
             while (true)
@@ -297,6 +314,27 @@ class Program
                     break;
 
                 case 5:
+                    Console.WriteLine("Transfer Money selected");
+                    Console.WriteLine();
+
+                    while (true)
+                    {
+                        Console.WriteLine("Enter your Account Number");
+                        if (int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please enter your valid account number");
+                    }
+
+                    foundAccount = bank.FindAccount(accountnumber);
+
+
+
+
+                    break;
+
+                case 6:
                     Console.WriteLine("Account Details selected");
                     Console.WriteLine();
 
@@ -324,7 +362,7 @@ class Program
 
                     break;
 
-                case 6:
+                case 7:
                     Console.WriteLine("Thank you for using Bank Management System.");
                     return;
 
