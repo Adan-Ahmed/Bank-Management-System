@@ -75,16 +75,19 @@ class Program
         while (true) 
         {
             Console.WriteLine("Enter your Account Balance");
-            if(double.TryParse(Console.ReadLine(), out accountbalance)) 
+            if (double.TryParse(Console.ReadLine(), out accountbalance))
             {
-                if(accountbalance >= 0)
+                if (accountbalance >= 0)
                 {
                     break;
                 }
-                    Console.WriteLine("Initial Balance Cannot Be Negative");
-                break;
+                
+                Console.WriteLine("Initial Balance Cannot Be Negative");
             }
-            Console.WriteLine("Please enter a valid number for balance");
+            else
+            {
+                Console.WriteLine("Please enter a valid number for balance");
+            }
         }
 
         //Console.WriteLine("Enter the deposit Amount");
@@ -150,8 +153,17 @@ class Program
             Console.WriteLine("5. Account Details");
             Console.WriteLine("6. Exit");
 
-            Console.Write("Enter your choice: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice;
+            while (true)
+            {
+                Console.WriteLine("Enter your choice");
+
+                if (int.TryParse(Console.ReadLine(), out choice)) 
+                {
+                    break;
+                }
+                Console.WriteLine("Please enter valid number");
+            }
             switch (choice)
             {
                 case 1:
@@ -173,10 +185,16 @@ class Program
                 case 2:
                     Console.WriteLine("Deposit selected");
                     Console.WriteLine();
-
-                    Console.WriteLine("Enter your Account Number");
-                    int accountnumber = Convert.ToInt32(Console.ReadLine());
-
+                    int accountnumber;
+                    while (true) 
+                    {
+                        Console.WriteLine("Enter your Account Number");
+                        if (int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please enter your valid account number");
+                    }
                     Account foundAccount = bank.FindAccount(accountnumber);
 
                     if(foundAccount != null)
@@ -206,9 +224,15 @@ class Program
                     Console.WriteLine("Withdraw selected");
                     Console.WriteLine();
 
-                    Console.WriteLine("Enter your Account Number");
-                    accountnumber = Convert.ToInt32(Console.ReadLine());
-
+                    while (true)
+                    {
+                        Console.WriteLine("Enter your Account Number");
+                        if (int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please enter your valid account number");
+                    }
                     foundAccount = bank.FindAccount(accountnumber);
 
                     if (foundAccount != null)
@@ -238,8 +262,15 @@ class Program
                     Console.WriteLine("Check Balance selected");
                     Console.WriteLine();
 
-                    Console.WriteLine("Enter your Account Number");
-                    accountnumber = Convert.ToInt32(Console.ReadLine());
+                    while (true)
+                    {
+                        Console.WriteLine("Enter your Account Number");
+                        if (int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please enter your valid account number");
+                    }
 
                     foundAccount = bank.FindAccount(accountnumber);
 
@@ -260,8 +291,15 @@ class Program
                     Console.WriteLine("Account Details selected");
                     Console.WriteLine();
 
-                    Console.WriteLine("Enter your Account Number");
-                    accountnumber = Convert.ToInt32(Console.ReadLine());
+                    while (true)
+                    {
+                        Console.WriteLine("Enter your Account Number");
+                        if (int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please enter your valid account number");
+                    }
                     foundAccount = bank.FindAccount(accountnumber);
 
                     if (foundAccount != null)
