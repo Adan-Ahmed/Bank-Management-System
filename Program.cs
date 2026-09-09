@@ -310,19 +310,6 @@ class Program
                         Console.WriteLine("Invalid Account Number");
 
                     }
-                    Console.WriteLine("Enter Receiver Account Number");
-
-                    int receiver;
-                    while (true) 
-                    {
-                       if(int.TryParse(Console.ReadLine(), out receiver)) 
-                        {
-                            break;
-                        }
-                        Console.WriteLine("Please Enter valid receiver account number");
-                    }
-
-
                     break;
 
                 case 5:
@@ -350,7 +337,28 @@ class Program
                         Console.WriteLine("Invalid Account Number");
                         break;
                     }
+                    Console.WriteLine("Enter the receiver account number");
+                    Console.WriteLine();
 
+                    int receiver;
+                    while (true)
+                    {
+                        if (int.TryParse(Console.ReadLine(), out receiver))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Please Enter valid receiver account number");
+                    }
+                    foundAccount = bank.FindAccount(receiver);
+                    if (foundAccount != null)
+                    {
+                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Account Number");
+                        break;
+                    }
 
                     break;
 
