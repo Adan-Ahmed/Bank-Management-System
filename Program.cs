@@ -329,7 +329,15 @@ class Program
 
                     foundAccount = bank.FindAccount(accountnumber);
 
-
+                    if (foundAccount != null)
+                    {
+                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Account Number");
+                        break;
+                    }
 
 
                     break;
