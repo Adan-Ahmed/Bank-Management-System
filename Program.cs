@@ -238,8 +238,17 @@ class Program
                     if (foundAccount != null)
                     {
                         Console.WriteLine($"Account Name: {foundAccount.AccountName}");
-                        Console.WriteLine("Enter your WithDraw Amount");
-                        double amount = Convert.ToDouble(Console.ReadLine());
+                        double amount;
+                        while (true) 
+                        {
+                            Console.WriteLine("Enter your WithDraw Amount");
+
+                            if(double.TryParse(Console.ReadLine(), out amount)) 
+                            {
+                                break;
+                            }
+                            Console.WriteLine("Please enter valid WithDraw Amount");
+                        }
 
                         bool success = foundAccount.Withdraw(amount);
                         if (success)
