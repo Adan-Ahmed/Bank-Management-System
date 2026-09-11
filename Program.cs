@@ -175,18 +175,30 @@ class Program
             {
                 case 1:
                     Console.WriteLine("Create Account selected");
-                    Account account = Input_User();
-                    Account existingaccount = bank.FindAccount(account.AccountNumber);
 
-                    if (existingaccount == null)
-                    {
-                        bank.Addaccount(account);
-                        Console.WriteLine("Account Create Successfully");                    
+                    int accountnumber;
+                    while (true) 
+                    { 
+                        Console.WriteLine("Enter your account number");
+                        if(int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            break;       
+                        }
+                        Console.WriteLine("Invalid Account Number");
                     }
-                    else
+                    Account existingaccount = bank.FindAccount(accountnumber);
+                    if (existingaccount != null) 
                     {
-                        Console.WriteLine("Account ALready Exits");
+                        Console.WriteLine("Account Already Exits");
+                        break;
+                  
                     }
+
+                    Account account = Input_User(accountnumber);
+                    bank.Addaccount(account);
+
+                    Console.WriteLine("Account Create Successfully");                    
+
                         break;
 
                 case 2:
