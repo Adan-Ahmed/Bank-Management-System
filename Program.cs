@@ -71,19 +71,8 @@ class Account
 class Program
 {
     // Take account information from user
-    static Account Input_User()
+    static Account Input_User(int accountnumber)
     {
-        int accountnumber;
-        while (true) 
-        {
-            Console.WriteLine("Enter your Account Number");
-            if (int.TryParse(Console.ReadLine(), out accountnumber)) 
-            {
-                break;
-            }
-            Console.WriteLine("Please enter a valid Account Number");
-        }
-
         Console.WriteLine("Enter your Account Name");
         string accountname = Console.ReadLine();
 
@@ -105,6 +94,7 @@ class Program
                 Console.WriteLine("Please enter a valid number for balance");
             }
         }
+
 
         //Console.WriteLine("Enter the deposit Amount");
         //double depositamount = Convert.ToDouble(Console.ReadLine());
