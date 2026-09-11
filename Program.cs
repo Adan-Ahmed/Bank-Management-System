@@ -352,17 +352,17 @@ class Program
                     Console.WriteLine("Enter the receiver account number");
                     Console.WriteLine();
 
-                    int receiver;
+                    int receiverAccountNumber;
                     while (true)
                     {
-                        if (int.TryParse(Console.ReadLine(), out receiver))
+                        if (int.TryParse(Console.ReadLine(), out receiverAccountNumber))
                         {
                             break;
                         }
                         Console.WriteLine("Please Enter valid receiver account number");
                     }
 
-                    Account receiverAccount = bank.FindAccount(receiver);
+                    Account receiverAccount = bank.FindAccount(receiverAccountNumber);
 
                     if (receiverAccount != null)
                     {
