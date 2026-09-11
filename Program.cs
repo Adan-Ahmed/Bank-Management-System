@@ -374,6 +374,7 @@ class Program
                         break;
                     }
 
+                    //sender amount
                     Console.WriteLine("Enter the amount you want to send");
                     Console.WriteLine();
                     double Tamount;
@@ -384,20 +385,6 @@ class Program
                             break;
                         }
                         Console.WriteLine("Enter the correct amount number");
-                    }
-
-                    //sender amount
-                    Console.WriteLine("Write the amount you want to sent ");
-                    Console.WriteLine();
-
-                    double tamount;
-                    while (true) 
-                    {
-                        if (double.TryParse(Console.ReadLine(), out tamount))
-                        {
-                            break;
-                        }
-                        Console.WriteLine("Enter valid amount number");
                     }
 
                     bool sucess = sender.Transfer(receiverAccount,Tamount);
