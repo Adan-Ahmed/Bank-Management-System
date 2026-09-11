@@ -322,6 +322,7 @@ class Program
                     break;
 
                 case 5:
+                    //sender amount
                     Console.WriteLine("Transfer Money selected");
                     Console.WriteLine();
 
@@ -335,11 +336,11 @@ class Program
                         Console.WriteLine("Please enter your valid account number");
                     }
 
-                    foundAccount = bank.FindAccount(accountnumber);
+                    Account sender = bank.FindAccount(accountnumber);
 
-                    if (foundAccount != null)
+                    if (sender != null)
                     {
-                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
+                        Console.WriteLine($"Account Name: {sender.AccountName}");
                     }
                     else
                     {
@@ -347,6 +348,7 @@ class Program
                         break;
                     }
 
+                    //receiver amount 
                     Console.WriteLine("Enter the receiver account number");
                     Console.WriteLine();
 
@@ -359,14 +361,16 @@ class Program
                         }
                         Console.WriteLine("Please Enter valid receiver account number");
                     }
-                    foundAccount = bank.FindAccount(receiver);
-                    if (foundAccount != null)
+
+                    Account receiverAccount = bank.FindAccount(receiver);
+
+                    if (receiverAccount != null)
                     {
-                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
+                        Console.WriteLine($"Account Name: {receiverAccount.AccountName}");
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Account Number");
+                        Console.WriteLine("Invalid Receiver Account Number");
                         break;
                     }
 
@@ -381,7 +385,10 @@ class Program
                         }
                         Console.WriteLine("Enter the correct amount number");
                     }
-                    bool success = foundAccount.Transfer(amount);
+
+                    //sender amount
+                    Console.WriteLine("W");
+                    sender.Transfer(receiverAccount,Tamount);
                     if (success) 
                     {
                         
