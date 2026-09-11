@@ -204,7 +204,7 @@ class Program
                 case 2:
                     Console.WriteLine("Deposit selected");
                     Console.WriteLine();
-                    int accountnumber;
+
                     while (true) 
                     {
                         Console.WriteLine("Enter your Account Number");
