@@ -387,18 +387,28 @@ class Program
                     }
 
                     //sender amount
-                    Console.WriteLine("W");
-                    sender.Transfer(receiverAccount,Tamount);
-                    if (success) 
+                    Console.WriteLine("Write the amount you want to sent ");
+                    Console.WriteLine();
+
+                    double tamount;
+                    while (true) 
                     {
-                        
+                        if (double.TryParse(Console.ReadLine(), out tamount))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Enter valid amount number");
+                    }
+
+                    bool sucess = sender.Transfer(receiverAccount,Tamount);
+                    if (sucess) 
+                    {
+                        Console.WriteLine("Transfer Successful");
                     }
                     else
                     {
-
+                        Console.WriteLine("Invalid Transfer Amount or Insufficient Balance");
                     }
-
-
                         break;
 
                 case 6:
