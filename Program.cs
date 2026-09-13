@@ -95,13 +95,6 @@ class Program
             }
         }
 
-
-        //Console.WriteLine("Enter the deposit Amount");
-        //double depositamount = Convert.ToDouble(Console.ReadLine());
-
-        //Console.WriteLine("Enter the withdraw Amount");
-        //double withdrawamount = Convert.ToDouble(Console.ReadLine());
-
         // Create Account object
         Account account = new Account(
             accountnumber,
@@ -438,38 +431,6 @@ class Program
             }
         }
 
-        // Create 3 accounts
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    Account account = Input_User();
-
-        //    // Add account to Bank
-        //    bank.Addaccount(account);
-
-        //    // Check current balance
-        //    double balance = account.CheckBalance();
-
-        //    Console.WriteLine($"Current Balance: {balance}");
-        //    Console.WriteLine();
-        //}
-
-        // Search account
-        //Console.WriteLine("Enter the Account Number to Search");
-        //int SearchNum = Convert.ToInt32(Console.ReadLine());
-
-        //Account foundaccount = bank.FindAccount(SearchNum);
-
-        //// Display account information
-        //if (foundaccount != null)
-        //{
-        //    Console.WriteLine($"Account Number: {foundaccount.AccountNumber}");
-        //    Console.WriteLine($"Account Name: {foundaccount.AccountName}");
-        //    Console.WriteLine($"Account Balance: {foundaccount.AccountBalance}");
-        //}
-        //else
-        //{
-        //    Console.WriteLine("Invalid Account Number");
-        //}
     }  
     
 }
