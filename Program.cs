@@ -1,81 +1,6 @@
 ﻿using System;
 // call list library
 using System.Collections.Generic;
-
-class Account
-{
-    public int AccountNumber { get; set; }
-    public string AccountName { get; set; }
-    public double AccountBalance { get; set; }
-
-    // Constructor
-    public Account(int accountnumber, string accountname, double accountbalance)
-    {
-        AccountNumber = accountnumber;
-        AccountName = accountname;
-        AccountBalance = accountbalance;
-    }
-
-    // Deposit money
-    public bool Deposit(double Damount)
-    {
-        if (Damount > 0)
-        {
-            
-            AccountBalance = AccountBalance + Damount;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // Withdraw money
-    public bool Withdraw(double Wamount)
-    {
-        if (AccountBalance >= Wamount && Wamount > 0)
-        {
-            AccountBalance -= Wamount;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool Transfer(Account receiver, double amount) 
-    { 
-        if(amount > 0 && AccountBalance >= amount) 
-        {
-            AccountBalance -= amount;
-            receiver.AccountBalance += amount;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // Check balance
-    public double CheckBalance()
-    {
-        return AccountBalance;
-    }
-}
-
-// inheriance
-class SavingsAccount : Account 
-{
-    public SavingsAccount(int accountnumber, string accountname, double accountbalance)
-        : base(accountnumber, accountname, accountbalance) 
-    {
-    
-    }
-}
-
 class Program
 {
     // Take account information from user
@@ -117,32 +42,6 @@ class Program
         //account.Withdraw(withdrawamount);
 
         return account;
-    }
-
-    class Bank
-    {
-        // Bank owns the list of accounts
-        List<Account> accounts = new List<Account>();
-
-        // Add account to the bank
-        public void Addaccount(Account account)
-        {
-            accounts.Add(account);
-        }
-
-        // Find account by account number
-        public Account? FindAccount(int accountnumber)
-        {
-            foreach (Account account in accounts)
-            {
-                if (account.AccountNumber == accountnumber)
-                {
-                    return account;
-                }
-            }
-
-            return null;
-        }
     }
 
     static void Main(string[] args)
@@ -196,7 +95,7 @@ class Program
                     }
 
                     Account account = Input_User(accountnumber);
-                    bank.Addaccount(account);
+                    bank.AddAccount(account);
 
                     Console.WriteLine("Account Create Successfully");                    
 
