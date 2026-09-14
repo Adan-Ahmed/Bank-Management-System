@@ -1,15 +1,18 @@
 ﻿public class SavingsAccount : Account
 {
-    public double InterestRate {  get; set; }
+    public double InterestRate { get; set; }
+
     public SavingsAccount(
         int accountnumber,
         string accountname,
-        double accountbalance)
+        double accountbalance,
+        double interestrate)
         : base(accountnumber, accountname, accountbalance)
     {
         InterestRate = interestrate;
     }
-    public void AddInterest() 
+
+    public void AddInterest()
     {
         double interest = AccountBalance * InterestRate / 100;
         AccountBalance += interest;
