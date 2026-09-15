@@ -87,6 +87,7 @@ class Program
                         Console.WriteLine("Invalid Account Number");
                     }
                     Account existingaccount = bank.FindAccount(accountnumber);
+
                     if (existingaccount != null) 
                     {
                         Console.WriteLine("Account Already Exits");
@@ -94,12 +95,33 @@ class Program
                   
                     }
 
-                    Account account = Input_User(accountnumber);
-                    bank.AddAccount(account);
+                    Console.WriteLine("Account Create Successfully");
 
-                    Console.WriteLine("Account Create Successfully");                    
+                    Console.WriteLine("Select Account Type");
+                    Console.WriteLine("1. Normal Account");
+                    Console.WriteLine("2. Saving Account");
 
-                        break;
+                    int accoutType;
+                    while (true) 
+                    {
+                        Console.WriteLine("Enter your choice");
+                        if(int.TryParse(Console.ReadLine(), out accoutType)) 
+                        { 
+                            if(accoutType == 1 || accoutType == 2) 
+                            {
+                                break;
+                            }
+                        }
+                        Console.WriteLine("Please select 1 or 2 ");
+                    }
+                    if(accoutType == 1) 
+                    {
+                        Account account = Input_User(accountnumber);
+                        bank.AddAccount(account);
+                        Console.WriteLine("Account Create Successfully");
+                    
+                    }
+                    break;
 
                 case 2:
                     Console.WriteLine("Deposit selected");
