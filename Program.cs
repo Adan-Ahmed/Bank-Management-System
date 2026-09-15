@@ -95,26 +95,24 @@ class Program
                   
                     }
 
-                    Console.WriteLine("Account Create Successfully");
-
                     Console.WriteLine("Select Account Type");
                     Console.WriteLine("1. Normal Account");
                     Console.WriteLine("2. Saving Account");
 
-                    int accoutType;
+                    int accountType;
                     while (true) 
                     {
                         Console.WriteLine("Enter your choice");
-                        if(int.TryParse(Console.ReadLine(), out accoutType)) 
+                        if(int.TryParse(Console.ReadLine(), out accountType)) 
                         { 
-                            if(accoutType == 1 || accoutType == 2) 
+                            if(accountType == 1 || accountType == 2) 
                             {
                                 break;
                             }
                         }
                         Console.WriteLine("Please select 1 or 2 ");
                     }
-                    if(accoutType == 1) 
+                    if(accountType == 1) 
                     {
                         Account account = Input_User(accountnumber);
                         bank.AddAccount(account);
