@@ -35,12 +35,6 @@ class Program
             accountbalance
         );
 
-        //// Deposit
-        //account.Deposit(depositamount);
-
-        //// Withdraw
-        //account.Withdraw(withdrawamount);
-
         return account;
     }
 
