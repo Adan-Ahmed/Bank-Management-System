@@ -43,7 +43,7 @@ class Program
         while (true) 
         {
             Console.WriteLine("Enter Account Number");
-            if (int.TryParse(Console.ReadLine(), out int accountnumber)
+            if (int.TryParse(Console.ReadLine(), out int accountnumber))
             {
                 Account account = bank.FindAccount(accountnumber);
                 if(account != null)
@@ -130,8 +130,8 @@ class Program
                     }
                     if (accountType == 1)
                     {
-                        Account account = Input_User(accountnumber);
-                        bank.AddAccount(account);
+                        Account newaccount = Input_User(accountnumber);
+                        bank.AddAccount(newaccount);
                         Console.WriteLine("Account Create Successfully");
 
                     }
@@ -341,7 +341,7 @@ class Program
                         break;
 
                 case 6:
-                    Account account = GetAccount(bank);
+                    account = GetAccount(bank);
 
                     if (account is SavingsAccount savingsAccount)
                     {
