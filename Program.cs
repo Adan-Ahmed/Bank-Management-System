@@ -112,14 +112,34 @@ class Program
                         }
                         Console.WriteLine("Please select 1 or 2 ");
                     }
-                    if(accountType == 1) 
+                    if (accountType == 1)
                     {
                         Account account = Input_User(accountnumber);
                         bank.AddAccount(account);
                         Console.WriteLine("Account Create Successfully");
-                    
+
                     }
-                    break;
+                    else if (accountType == 2) 
+                    {
+                        Console.WriteLine("Enter your account name");
+                        string accountname = Console.ReadLine();
+
+                        Console.WriteLine("Ener your initial Balance");
+                        double accountbalance = double.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Enter interest rate");
+                        double interestrate = double.Parse(Console.ReadLine());
+
+                        SavingsAccount savingsaccount = new SavingsAccount(
+                            accountnumber,
+                            accountname,
+                            accountbalance,
+                            interestrate
+                        );
+                        bank.AddAccount(savingsaccount);
+                        Console.WriteLine("Savings Account create successfully");
+                    }
+                        break;
 
                 case 2:
                     Console.WriteLine("Deposit selected");
