@@ -359,7 +359,7 @@ class Program
                             else 
                             {
                                 Console.WriteLine($"Account Name: {account.AccountName}");
-                                Console.WriteLine($"Account Balance: {account.AccountBalance}");
+                                Console.WriteLine($"Account Balance: {account.CheckBalance()}");
                                 break;
                             }
                         }
