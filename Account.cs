@@ -1,4 +1,4 @@
-﻿class Account
+﻿public class Account
 {
     public int AccountNumber { get; set; }
     public string AccountName { get; set; }
