@@ -38,6 +38,27 @@ class Program
         return account;
     }
 
+    static Account GetAccount(Bank bank) 
+    {
+        while (true) 
+        {
+            Console.WriteLine("Enter Account Number");
+            if (int.TryParse(Console.ReadLine(), out int accountnumber)
+            {
+                Account account = bank.FindAccount(accountnumber);
+                if(account != null)
+                {
+                    return account;
+                }
+                Console.WriteLine("Account Not Found");
+            }
+            else 
+            {
+                Console.WriteLine("Invalid Account Number");
+            }
+        }
+    }
+
     static void Main(string[] args)
     {
         Bank bank = new Bank();
@@ -234,28 +255,11 @@ class Program
                     Console.WriteLine("Check Balance selected");
                     Console.WriteLine();
 
-                    while (true)
-                    {
-                        Console.WriteLine("Enter your Account Number");
-                        if (int.TryParse(Console.ReadLine(), out accountnumber))
-                        {
-                            break;
-                        }
-                        Console.WriteLine("Please enter your valid account number");
-                    }
+                    Account account = GetAccount(bank);
 
-                    foundAccount = bank.FindAccount(accountnumber);
+                    Console.WriteLine($"Account Name: {account.AccountName}");
+                    Console.WriteLine($"Current Balance: {account.CheckBalance()}");
 
-                    if(foundAccount != null) 
-                    {
-                        Console.WriteLine($"Account Name: {foundAccount.AccountName}");
-                        Console.WriteLine($"Current Balance: {foundAccount.CheckBalance()}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Account Number");
-
-                    }
                     break;
 
                 case 5:
@@ -337,31 +341,23 @@ class Program
                         break;
 
                 case 6:
+                    Account account = GetAccount(bank);
 
-                    Console.WriteLine("Enter Account Number");
-
-                    while (true) 
+                    if (account is SavingsAccount savingsAccount)
                     {
-                        if (int.TryParse(Console.ReadLine(), out accountnumber))
-                        {
-                            Account account = bank.FindAccount(accountnumber);
-                            
-                            if(account == null) 
-                            {
-                                Console.WriteLine("Account not found");
-                            }
-                            else 
-                            {
-                                Console.WriteLine($"Account Name: {account.AccountName}");
-                                Console.WriteLine($"Account Balance: {account.CheckBalance()}");
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid Account Number");
-                        }
+                        Console.WriteLine($"Account Name: {savingsAccount.AccountName}");
+                        Console.WriteLine($"Current Balance: {savingsAccount.CheckBalance()}");
+
+                        savingsAccount.AddInterest();
+
+                        Console.WriteLine("Interest Applied Successfully");
+                        Console.WriteLine($"New Balance: {savingsAccount.CheckBalance()}");
                     }
+                    else
+                    {
+                        Console.WriteLine("Interest can only be applied to a Savings Account");
+                    }
+
                     break;
 
                 case 7:
