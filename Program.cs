@@ -57,8 +57,9 @@ class Program
             Console.WriteLine("3. Withdraw");
             Console.WriteLine("4. Check Balance");
             Console.WriteLine("5. Transfer Money");
-            Console.WriteLine("6. Account Details");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("6. Apply Interest");
+            Console.WriteLine("7. Account Details");
+            Console.WriteLine("8. Exit");
 
             int choice;
             while (true)
@@ -276,6 +277,7 @@ class Program
                             break;
                         }
                         Console.WriteLine("Please enter your valid account number");
+                        
                     }
 
                     Account sender = bank.FindAccount(accountnumber);
@@ -341,6 +343,34 @@ class Program
                         break;
 
                 case 6:
+
+                    Console.WriteLine("Enter Account Number");
+
+                    while (true) 
+                    {
+                        if (int.TryParse(Console.ReadLine(), out accountnumber))
+                        {
+                            Account account = bank.FindAccount(accountnumber);
+                            
+                            if(account == null) 
+                            {
+                                Console.WriteLine("Account not found");
+                            }
+                            else 
+                            {
+                                Console.WriteLine($"Account Name: {account.AccountName}");
+                                Console.WriteLine($"Account Balance: {account.AccountBalance}");
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Account Number");
+                        }
+                    }
+                    break;
+
+                case 7:
                     Console.WriteLine("Account Details selected");
                     Console.WriteLine();
 
@@ -368,7 +398,7 @@ class Program
 
                     break;
 
-                case 7:
+                case 8:
                     Console.WriteLine("Thank you for using Bank Management System.");
                     return;
 
